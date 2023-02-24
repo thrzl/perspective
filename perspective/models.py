@@ -26,15 +26,7 @@ class Perspective:
     __slots__ = ("__key", "session", "attributes")
 
     def __init__(self, key: str):
-        self.__key = key
-        self.attributes = (
-            "TOXICITY",
-            "SEVERE_TOXICITY",
-            "INSULT",
-            "THREAT",
-            "SEXUALLY_EXPLICIT",
-            "FLIRTATION",
-        )
+        self.__key: str = key
 
     async def score(
         self, message: str, attributes: List[Attribute] = [Attribute.toxicity]
