@@ -1,10 +1,13 @@
 [tool.poetry]
-name = "perspectivepy"
+name = "perspectiveapi"
 version = "0.1.0"
 description = "a python wrapper for google's perspective api"
 authors = ["thrzl. <thrizzle@skiff.com>"]
 license = "MIT"
 readme = "README.md"
+packages = [
+    { include = "perspective" }
+]
 
 [tool.poetry.dependencies]
 python = "^3.8"
