@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "perspective"
+version = "0.1.0"
+description = "a python wrapper for google's perspective api"
+authors = ["thrzl. <thrizzle@skiff.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+aiohttp = "^3.8.4"
+orjson = "^3.8.6"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
