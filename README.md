@@ -1,6 +1,11 @@
 # 💖 perspective
 a strongly typed wrapper for google's perspective api
 
+## 📦 installation
+```sh
+pip install perspectiveapi
+```
+
 ## 🪴 example
 ```py
 from perspective import Perspective, Attribute
@@ -10,8 +15,8 @@ p = Perspective(key="...")
 
 async def main():
     s = await p.score(
-        "your message here", attributes=(Attribute.flirtation, Attribute.sexually_explicit)
+        "your message here", attributes=(Attribute.flirtation, Attribute.all())
     )
     print(s.flirtation) 
-    print(s.sexually_explicit)
+    print(s.severe_toxicity)
 ```
