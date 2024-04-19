@@ -6,8 +6,7 @@ authors = [
     { name = "te", email = "thrzl@icloud.com" }
 ]
 dependencies = [
-    "aiohttp>=3.9.5",
-    "orjson>=3.10.1",
+    "httpx>=0.27.0",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"

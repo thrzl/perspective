@@ -1,9 +1,8 @@
 # from __future__ import annotations
 from typing import List
-from aiohttp import ClientSession
-from orjson import dumps
 from enum import Enum
 from typing import Dict
+from httpx import AsyncClient
 
 Attribute = Enum(
     "Attribute",
@@ -89,17 +88,15 @@ class Perspective:
             attribute.name: {} for attribute in attributes
         }
 
-        payload = dumps(
-            dict(
-                languages=["en"],
-                comment={"text": message},
-                requestedAttributes=requested_attributes,
-            )
+        payload = dict(
+            languages=["en"],
+            comment={"text": message},
+            requestedAttributes=requested_attributes,
         )
-        async with ClientSession() as session:
+        async with AsyncClient() as session:
             res = await session.post(
                 "https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze",
-                data=payload,
+                json=payload,
                 params={"key": self.__key},
             )
-        return Score(await res.json())
+        return Score(res.json())
