@@ -1,23 +1,29 @@
-[tool.poetry]
-name = "perspectiveapi"
-version = "0.1.0"
+[project]
+name = "perspective"
+version = "1.0.0"
 description = "a python wrapper for google's perspective api"
-authors = ["thrzl. <thrizzle@skiff.com>"]
-license = "MIT"
-readme = "README.md"
-packages = [
-    { include = "perspective" }
+authors = [
+    { name = "te", email = "thrzl@icloud.com" }
 ]
-
-[tool.poetry.dependencies]
-python = "^3.8"
-aiohttp = "^3.8.4"
-orjson = "^3.8.6"
-
-
-[tool.poetry.group.dev.dependencies]
-black = "^23.1.0"
+dependencies = [
+    "aiohttp>=3.9.5",
+    "orjson>=3.10.1",
+]
+readme = "README.md"
+requires-python = ">= 3.8"
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = [
+    "ruff>=0.4.1",
+]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["perspective"]
