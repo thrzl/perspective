@@ -19,11 +19,20 @@ frozenlist==1.4.1
     # via aiosignal
 idna==3.7
     # via yarl
+iniconfig==2.0.0
+    # via pytest
 multidict==6.0.5
     # via aiohttp
     # via yarl
 orjson==3.10.1
     # via perspective
+packaging==24.0
+    # via pytest
+pluggy==1.4.0
+    # via pytest
+pytest==8.1.1
+    # via pytest-asyncio
+pytest-asyncio==0.23.6
 ruff==0.4.1
 yarl==1.9.4
     # via aiohttp
