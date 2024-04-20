@@ -16,14 +16,21 @@ permissions:
   contents: read
 
 jobs:
-  deploy:
-
+  publish-package:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Publish PyPi package
-      uses: code-specialist/pypi-poetry-publish@v1
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
       with:
-        ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        PUBLISH_REGISTRY_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+        python-version: '3.9'
+    - name: Install Rye
+      run: |
+        curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
+    - name: Build and publish
+      env:
+          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+      run: |
+        rye build
+        rye publish --token $PYPI_TOKEN
