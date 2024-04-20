@@ -1,5 +1,5 @@
 [project]
-name = "perspective"
+name = "perspectiveapi"
 version = "1.1.0"
 description = "a python wrapper for google's perspective api"
 authors = [
