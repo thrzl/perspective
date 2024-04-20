@@ -15,7 +15,7 @@ p = Perspective(key="...")
 
 async def main():
     s = await p.score(
-        "your message here", attributes=(Attribute.flirtation, Attribute.all())
+        "your message here", attributes=(Attribute.FLIRTATION, Attribute.SEVERE_TOXICITY)
     )
     print(s.flirtation) 
     print(s.severe_toxicity)
@@ -29,7 +29,7 @@ p = Perspective(key="...")
 
 def main():
     s = p.score(
-        "your message here", attributes=(Attribute.flirtation, Attribute.all())
+        "your message here", attributes=(Attribute.FLIRTATION, Attribute.SEVERE_TOXICITY)
     )
     print(s.flirtation) 
     print(s.severe_toxicity)
