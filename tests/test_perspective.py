@@ -15,6 +15,7 @@ async def test_perspective():
     r = await p.score("you're awesome!")
     assert r.toxicity < 0.05
 
+
 def test_perspective_blocking():
     p = PerspectiveBlocking(environ["PERSPECTIVE_API_KEY"])
 

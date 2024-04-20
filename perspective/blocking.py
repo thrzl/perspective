@@ -4,6 +4,7 @@ from typing import Dict
 from httpx import Client
 from .models import Attribute, Score
 
+
 class Perspective:
     """The Perspective API client.
 
