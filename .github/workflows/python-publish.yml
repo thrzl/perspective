@@ -27,6 +27,9 @@ jobs:
     - name: Install Rye
       run: |
         curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
+    - name: Source Rye environment
+      run: |
+        source $HOME/.rye/env
     - name: Build and publish
       env:
           ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
