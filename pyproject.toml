@@ -1,6 +1,6 @@
 [project]
 name = "perspective"
-version = "1.0.0"
+version = "1.1.0"
 description = "a python wrapper for google's perspective api"
 authors = [
     { name = "te", email = "thrzl@icloud.com" }
