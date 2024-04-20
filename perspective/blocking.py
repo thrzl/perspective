@@ -1,56 +1,8 @@
 # from __future__ import annotations
 from typing import List
-from enum import Enum
 from typing import Dict
-from httpx import AsyncClient
-
-Attribute = Enum(
-    "Attribute",
-    [
-        "TOXICITY",
-        "SEVERE_TOXICITY",
-        "INSULT",
-        "THREAT",
-        "SEXUALLY_EXPLICIT",
-        "FLIRTATION",
-    ],
-)
-"""An Enum containing the attributes to scan text for. This controls the requestedAttributes field of the request.
-
-Raises:
-    AttributeError: If the attributes are invalid.
-"""
-
-
-class Score:
-    """The attribute score of the scanned message. You should never have to intialize this class yourself."""
-
-    __slots__ = (
-        "toxicity",
-        "severe_toxicity",
-        "insult",
-        "threat",
-        "sexually_explicit",
-        "flirtation",
-    )
-
-    def __init__(self, res: Dict[str, dict]):
-        self.toxicity: float
-        self.severe_toxicity: float
-        self.insult: float
-        self.sexually_explicit: float
-        self.flirtation: float
-
-        for attribute in Attribute:
-            setattr(
-                self,
-                attribute.name.lower(),
-                res["attributeScores"]
-                .get(attribute.name.upper(), {})
-                .get("summaryScore", {})
-                .get("value"),
-            )
-
+from httpx import Client
+from .models import Attribute, Score
 
 class Perspective:
     """The Perspective API client.
@@ -63,9 +15,9 @@ class Perspective:
 
     def __init__(self, key: str):
         self.__key: str = key
-        self.__client = AsyncClient()
+        self.__client = Client()
 
-    async def score(
+    def score(
         self, message: str, attributes: List[Attribute] = [Attribute.TOXICITY]
     ) -> Score:
         """Makes a request to the Perspective API.
@@ -94,7 +46,7 @@ class Perspective:
             comment={"text": message},
             requestedAttributes=requested_attributes,
         )
-        res = await self.__client.post(
+        res = self.__client.post(
             "https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze",
             json=payload,
             params={"key": self.__key},

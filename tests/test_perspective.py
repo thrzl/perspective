@@ -1,5 +1,6 @@
 import pytest
 from perspective import Perspective
+from perspective.blocking import Perspective as PerspectiveBlocking
 from os import environ
 
 
@@ -12,4 +13,10 @@ async def test_perspective():
     p = Perspective(key)
 
     r = await p.score("you're awesome!")
+    assert r.toxicity < 0.05
+
+def test_perspective_blocking():
+    p = PerspectiveBlocking(environ["PERSPECTIVE_API_KEY"])
+
+    r = p.score("you're awesome!")
     assert r.toxicity < 0.05
