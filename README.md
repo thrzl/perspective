@@ -7,14 +7,28 @@ pip install perspectiveapi
 ```
 
 ## 🪴 example
+### async
 ```py
 from perspective import Perspective, Attribute
-from asyncio import get_event_loop
 
 p = Perspective(key="...")
 
 async def main():
     s = await p.score(
+        "your message here", attributes=(Attribute.flirtation, Attribute.all())
+    )
+    print(s.flirtation) 
+    print(s.severe_toxicity)
+```
+
+### blocking
+```py
+from perspective.blocking import Perspective, Attribute
+
+p = Perspective(key="...")
+
+def main():
+    s = p.score(
         "your message here", attributes=(Attribute.flirtation, Attribute.all())
     )
     print(s.flirtation) 
